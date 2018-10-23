@@ -38,6 +38,15 @@ class SiteController extends Controller
      * Renders the index view for the module
      * @return string
      */
+    public function actionCache()
+    {
+        return $this->render('cache');
+    }
+
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
     public function actionHome()
     {
         return $this->render('index');
