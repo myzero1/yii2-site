@@ -10,6 +10,40 @@ use yii\web\Controller;
 class SiteController extends Controller
 {
     /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            /*'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['cache', 'index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],*/
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
+    /**
      * Renders the index view for the module
      * @return string
      */
@@ -28,16 +62,6 @@ class SiteController extends Controller
      * Renders the index view for the module
      * @return string
      */
-    public function actionLogin()
-    {
-        var_dump('expression');exit;
-        return $this->render('index');
-    }
-
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
     public function actionCache()
     {
         return $this->render('cache');
@@ -47,18 +71,9 @@ class SiteController extends Controller
      * Renders the index view for the module
      * @return string
      */
-    public function actionHome()
+    public function actionError()
     {
-        return $this->render('index');
-    }
-
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionRbacp403()
-    {
-        return $this->render('rbacp403');
+        return $this->render('error');
     }
 
 }
