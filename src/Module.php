@@ -15,6 +15,16 @@ class Module extends \yii\base\Module implements \yii\base\BootstrapInterface
     public $theme = 'adminlteiframe'; // adminlteiframe,adminlte
 
     /**
+     * @inheritdoc
+     */
+    public $defaultLayout = '@vendor/myzero1/yii2-theme-adminlteiframe/src/views/adminlteiframe/layouts/main';
+
+    /**
+     * @inheritdoc
+     */
+    public $indexLayout = '@vendor/myzero1/yii2-theme-adminlteiframe/src/views/adminlteiframe/layouts/layout';
+
+    /**
      * {@inheritdoc}
      */
     public function bootstrap($app)
@@ -26,15 +36,23 @@ class Module extends \yii\base\Module implements \yii\base\BootstrapInterface
             $app->getUrlManager()->addRules([
                 [
                     'class' => 'yii\web\UrlRule',
-                    'pattern' => '',
+                    'pattern' => '/',
                     'route' => $this->id . '/site/index'
                 ],
                 [
                     'class' => 'yii\web\UrlRule',
-                    'pattern' => 'site',
+                    'pattern' => '/site',
                     'route' => $this->id . '/site/index'
                 ],
+                [
+                    'class' => 'yii\web\UrlRule',
+                    'pattern' => '/site/<action>',
+                    'route' => $this->id . '/site/<action>'
+                ],
             ], false);
+
+            $app->layout = $this->defaultLayout;
+
         } elseif ($app instanceof \yii\console\Application) {
             //
         }
