@@ -15,7 +15,7 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            /*'access' => [
+            'access' => [
                 'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
@@ -28,7 +28,13 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                 ],
-            ],*/
+            ],
+            'verbs' => [
+                'class' => \yii\filters\VerbFilter::className(),
+                'actions' => [
+                    'cache' => ['post'],
+                ],
+            ],
         ];
     }
 
